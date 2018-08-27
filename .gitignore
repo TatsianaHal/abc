@@ -1,9 +1,9 @@
-<<<<<<< HEAD
 # Игнорировать формат:
 *.md
-*.env
 
 # НО!:
 !.env.example
 
 node_modules/
+.env
+config/config.json
