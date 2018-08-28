@@ -1,19 +1,20 @@
-var exports = module.exports = {};
- 
-exports.signup = function(req, res) {
-    res.render('signup');
-}
+const exports = {};
+module.exports = exports;
 
-exports.signin = function(req, res) {
-    res.render('signin');
-}
+exports.signup = (req, res) => {
+  res.render('signup');
+};
 
-exports.dashboard = function(req, res) {
-    res.render('dashboard');
-}
+exports.signin = (req, res) => {
+  res.render('signin');
+};
 
-exports.logout = function(req, res) {
-    req.session.destroy(function(err) {
-        res.redirect('/');
-    });
-}
+exports.dashboard = (req, res) => {
+  res.render('dashboard');
+};
+
+exports.logout = (req, res) => {
+  req.session.destroy(() => {
+    res.redirect('/');
+  });
+};
