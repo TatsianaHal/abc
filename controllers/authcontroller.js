@@ -1,20 +1,24 @@
-const exports = {};
-module.exports = exports;
-
-exports.signup = (req, res) => {
+const signup = (req, res) => {
   res.render('signup');
 };
 
-exports.signin = (req, res) => {
+const signin = (req, res) => {
   res.render('signin');
 };
 
-exports.dashboard = (req, res) => {
+const dashboard = (req, res) => {
   res.render('dashboard');
 };
 
-exports.logout = (req, res) => {
+const logout = (req, res) => {
   req.session.destroy(() => {
     res.redirect('/');
   });
+};
+
+module.exports = {
+  signup,
+  signin,
+  dashboard,
+  logout,
 };
