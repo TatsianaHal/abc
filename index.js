@@ -1,14 +1,18 @@
+const dotenv = require('dotenv');
+
+if (process.env.NODE_ENV !== 'production') {
+  dotenv.config();
+}
+
 const express = require('express');
 const passport = require('passport');
 const session = require('express-session');
 const bodyParser = require('body-parser');
-const dotenv = require('dotenv');
 const exphbs = require('express-handlebars');
 const models = require('./app/models');
-const authRoute = require('./routes/auth.js');
+const authRoute = require('./routes/auth');
 
 const app = express();
-dotenv.load();
 app.use('/static', express.static('static'));
 
 // For BodyParser
