@@ -8,9 +8,12 @@ const express = require('express');
 const passport = require('passport');
 const session = require('express-session');
 const bodyParser = require('body-parser');
-const exphbs = require('express-handlebars');
+const path = require('path');
+const getdir = require('./app/config/getdirs');
 const models = require('./app/models');
-const authRoute = require('./routes/auth');
+const authRoute = require('./app/auth/routes/auth');
+
+const appDir = path.join(process.cwd(), 'app');
 
 const app = express();
 app.use('/static', express.static('static'));
@@ -50,8 +53,6 @@ models.sequelize.sync().then(() => {
 });
 
 // For Handlebars:
-app.set('views', './views');
-app.engine('hbs', exphbs({
-  extname: '.hbs',
-}));
+app.set('views', getdir.func(appDir, 'views'));
+
 app.set('view engine', '.hbs');
