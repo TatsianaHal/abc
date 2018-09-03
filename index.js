@@ -53,6 +53,6 @@ models.sequelize.sync().then(() => {
 });
 
 // For Handlebars:
-app.set('views', getdir.func(appDir, 'views'));
+app.set('views', getdir(appDir, 'views'));
 
 app.set('view engine', '.hbs');
