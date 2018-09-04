@@ -14,6 +14,7 @@ const models = require('./app/models');
 const authRoute = require('./app/auth/routes/auth');
 
 const appDir = path.join(process.cwd(), 'app');
+const port = process.env.PORT || 5000;
 
 const app = express();
 app.use('/static', express.static('static'));
@@ -31,7 +32,7 @@ app.get('/', (req, res) => {
   res.send('Welcome to Passport with Sequelize');
 });
 
-app.listen(5000, (err) => {
+app.listen(port, (err) => {
   if (!err) {
     console.log('Site is live');
   } else {
