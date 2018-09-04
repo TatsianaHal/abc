@@ -12,6 +12,7 @@ const path = require('path');
 const getdir = require('./app/config/getdirs');
 const models = require('./app/models');
 const authRoute = require('./app/auth/routes/auth');
+const localPassport = require('./app/config/passport');
 
 const appDir = path.join(process.cwd(), 'app');
 const port = process.env.PORT || 5000;
@@ -27,6 +28,7 @@ app.use(bodyParser.json());
 app.use(session({ secret: 'keyboard cat', resave: true, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
+localPassport.initialize(passport, models.user);
 
 app.get('/', (req, res) => {
   res.send('Welcome to Passport with Sequelize');
@@ -42,9 +44,6 @@ app.listen(port, (err) => {
 
 // Routes
 authRoute(app, passport);
-
-// load passport strategies
-require('./app/config/passport/passport.js')(passport, models.user);
 
 // Sync Database (синхронизация Sequelize):
 models.sequelize.sync().then(() => {
