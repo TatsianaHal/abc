@@ -1,9 +1,7 @@
-const logout = (req, res) => {
+function logout(req, res) {
   req.session.destroy(() => {
     res.redirect('/');
   });
-};
+}
 
-module.exports = {
-  logout,
-};
+module.exports = logout;

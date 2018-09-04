@@ -11,7 +11,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const getdir = require('./app/config/getdirs');
 const models = require('./app/models');
-const authRoute = require('./app/auth/routes/auth');
+const auth = require('./app/auth');
 const localPassport = require('./app/config/passport');
 
 const appDir = path.join(process.cwd(), 'app');
@@ -43,7 +43,7 @@ app.listen(port, (err) => {
 });
 
 // Routes
-authRoute(app, passport);
+auth.routes(app, passport);
 
 // Sync Database (синхронизация Sequelize):
 models.sequelize.sync().then(() => {

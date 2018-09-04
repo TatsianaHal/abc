@@ -1,11 +1,13 @@
-const authControllerSignUp = require('../controllers/signup');
-const authControllerSignIn = require('../controllers/signin');
-const authControllerDashboard = require('../controllers/dashboard');
-const authControllerLogout = require('../controllers/logout');
+const {
+  dashboard,
+  logout,
+  signin,
+  signup,
+} = require('../controllers');
 
-module.exports = (app, passport) => {
-  app.get('/signup', authControllerSignUp.signup);
-  app.get('/signin', authControllerSignIn.signin);
+function auth(app, passport) {
+  app.get('/signup', signup);
+  app.get('/signin', signin);
 
   app.post('/signup', passport.authenticate('local-signup', {
     successRedirect: '/dashboard',
@@ -20,11 +22,13 @@ module.exports = (app, passport) => {
     }
   };
 
-  app.get('/dashboard', isLoggedIn, authControllerDashboard.dashboard);
-  app.get('/logout', authControllerLogout.logout);
+  app.get('/dashboard', isLoggedIn, dashboard);
+  app.get('/logout', logout);
 
   app.post('/signin', passport.authenticate('local-signin', {
     successRedirect: '/dashboard',
     failureRedirect: '/signin',
   }));
-};
+}
+
+module.exports = auth;

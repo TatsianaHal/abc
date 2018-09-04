@@ -1,7 +1,5 @@
-const signin = (req, res) => {
+function signin(req, res) {
   res.render('signin');
-};
+}
 
-module.exports = {
-  signin,
-};
+module.exports = signin;
