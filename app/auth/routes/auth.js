@@ -1,8 +1,13 @@
-const authController = require('../controllers/authcontroller.js');
+const {
+  dashboard,
+  logout,
+  signin,
+  signup,
+} = require('../controllers');
 
-module.exports = (app, passport) => {
-  app.get('/signup', authController.signup);
-  app.get('/signin', authController.signin);
+function auth(app, passport) {
+  app.get('/signup', signup);
+  app.get('/signin', signin);
 
   app.post('/signup', passport.authenticate('local-signup', {
     successRedirect: '/dashboard',
@@ -12,15 +17,18 @@ module.exports = (app, passport) => {
   const isLoggedIn = (req, res, next) => {
     if (req.isAuthenticated()) {
       next();
+    } else {
+      res.redirect('/signin');
     }
-    res.redirect('/signin');
   };
 
-  app.get('/dashboard', isLoggedIn, authController.dashboard);
-  app.get('/logout', authController.logout);
+  app.get('/dashboard', isLoggedIn, dashboard);
+  app.get('/logout', logout);
 
   app.post('/signin', passport.authenticate('local-signin', {
     successRedirect: '/dashboard',
     failureRedirect: '/signin',
   }));
-};
+}
+
+module.exports = auth;

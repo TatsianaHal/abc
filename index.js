@@ -1,14 +1,23 @@
+const dotenv = require('dotenv');
+
+if (process.env.NODE_ENV !== 'production') {
+  dotenv.config();
+}
+
 const express = require('express');
 const passport = require('passport');
 const session = require('express-session');
 const bodyParser = require('body-parser');
-const dotenv = require('dotenv');
-const exphbs = require('express-handlebars');
+const path = require('path');
+const getdir = require('./app/config/getdirs');
 const models = require('./app/models');
-const authRoute = require('./routes/auth.js');
+const auth = require('./app/auth');
+const localPassport = require('./app/config/passport');
+
+const appDir = path.join(process.cwd(), 'app');
+const port = process.env.PORT || 5000;
 
 const app = express();
-dotenv.load();
 app.use('/static', express.static('static'));
 
 // For BodyParser
@@ -19,12 +28,13 @@ app.use(bodyParser.json());
 app.use(session({ secret: 'keyboard cat', resave: true, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
+localPassport.initialize(passport, models.user);
 
 app.get('/', (req, res) => {
   res.send('Welcome to Passport with Sequelize');
 });
 
-app.listen(5000, (err) => {
+app.listen(port, (err) => {
   if (!err) {
     console.log('Site is live');
   } else {
@@ -33,10 +43,7 @@ app.listen(5000, (err) => {
 });
 
 // Routes
-authRoute(app, passport);
-
-// load passport strategies
-require('./app/config/passport/passport.js')(passport, models.user);
+auth.routes(app, passport);
 
 // Sync Database (синхронизация Sequelize):
 models.sequelize.sync().then(() => {
@@ -46,8 +53,6 @@ models.sequelize.sync().then(() => {
 });
 
 // For Handlebars:
-app.set('views', './views');
-app.engine('hbs', exphbs({
-  extname: '.hbs',
-}));
+app.set('views', getdir(appDir, 'views'));
+
 app.set('view engine', '.hbs');
