@@ -15,8 +15,7 @@ const auth = require('./app/auth');
 const localPassport = require('./app/config/passport');
 
 const appDir = path.join(process.cwd(), 'app');
-// const port = process.env.PORT || 5000;
-const port = 5000;
+const port = process.env.PORT || 5000;
 
 const app = express();
 app.use('/static', express.static('static'));
