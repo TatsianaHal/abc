@@ -4,13 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "ng serve",
+    "start:be": "node index.js",
+    "start:fe": "ng serve",
     "dev": "nodemon",
     "sequelize:migrate": "sequelize db:migrate",
-
     "build": "ng build",
     "test": "ng test",
-    "lint": "ng lint && eslint .",
+    "lint:be": "eslint .",
+    "lint:fe": "ng lint",
     "e2e": "ng e2e"
   },
   "private": true,
