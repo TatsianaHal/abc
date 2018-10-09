@@ -13,7 +13,7 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.STRING,
       notEmpty: true,
     },
-    username: {
+    fullname: {
       type: Sequelize.TEXT,
     },
     about: {
