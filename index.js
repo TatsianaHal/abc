@@ -10,7 +10,7 @@ const session = require('express-session');
 const bodyParser = require('body-parser');
 const path = require('path');
 const getdir = require('./app/config/getdirs');
-const models = require('./app/models');
+const models = require('./db/models');
 const auth = require('./app/auth');
 const localPassport = require('./app/config/passport');
 
