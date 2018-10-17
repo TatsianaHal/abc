@@ -36,6 +36,15 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.ENUM('active', 'inactive'),
       defaultValue: 'active',
     },
+  }, {
+    defaultScope: {
+      attributes: { exclude: ['password'] },
+    },
+    scopes: {
+      checkPass: {
+        attributes: { },
+      },
+    },
   });
   return User;
 };
