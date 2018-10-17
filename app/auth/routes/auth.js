@@ -1,14 +1,8 @@
 const {
-  dashboard,
   logout,
-  // signin,
-  // signup,
 } = require('../controllers');
 
 function auth(app, passport) {
-  // app.get('/signup', signup);
-  // app.get('/signin', signin);
-
   app.post(
     '/signup',
     passport.authenticate('local-signup'),
@@ -17,16 +11,11 @@ function auth(app, passport) {
     },
   );
 
-  const isLoggedIn = (req, res, next) => {
-    if (req.isAuthenticated()) {
-      next();
-    } else {
-      // res.redirect('/signin');
-    }
+  const isLoggedIn = (req, res) => {
     res.json(req.isAuthenticated());
   };
 
-  app.get('/dashboard', isLoggedIn, dashboard);
+  app.get('/dashboard', isLoggedIn);
   app.get('/logout', logout);
 
   app.post(
