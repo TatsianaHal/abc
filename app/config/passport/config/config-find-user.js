@@ -2,27 +2,31 @@ const helpers = require('../helpers');
 
 function configFindUser(User) {
   return function findUser(req, email, password, done) {
-    User.findOne({
+    User.scope('checkPass').findOne({
       where: {
         email,
       },
     }).then((user) => {
       if (!user) {
         return done(null, false, {
-          message: 'Email does not exist',
+          message: 'Try one more time',
         });
       }
       if (!helpers.isValidPassword(user.password, password)) {
         return done(null, false, {
-          message: 'Incorrect password.',
+          message: 'Try one more time',
         });
       }
-      const userinfo = user.get();
+      const userinfo = {
+        ...user.get(),
+        password: undefined,
+      };
+
       return done(null, userinfo);
     }).catch((err) => {
       console.log('Error:', err);
       return done(null, false, {
-        message: 'Something went wrong with your Signin',
+        message: 'Something went wrong',
       });
     });
   };
