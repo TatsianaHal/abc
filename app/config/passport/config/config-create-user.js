@@ -22,9 +22,15 @@ function configCreateUser(User) {
       // добавление новых записей в базу данных:
       User.create(data).then((newUser) => {
         if (!newUser) {
-          return done(null, false);
+          return done(null, false, {
+            message: 'Something went wrong',
+          });
         } if (newUser) {
-          return done(null, newUser);
+          const userinfo = {
+            ...newUser.get(),
+            password: undefined,
+          };
+          return done(null, userinfo);
         }
         return false;
       });
