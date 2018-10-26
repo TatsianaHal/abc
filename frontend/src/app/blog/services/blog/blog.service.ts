@@ -7,11 +7,5 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class BlogService {
-
-  constructor(private _http: HttpClient) {
-  }
-
-  getAllUsers(): Observable<boolean> {
-    return this._http.get<boolean>('/api/dashboard');
-  }
+  constructor(private _http: HttpClient) { }
 }
