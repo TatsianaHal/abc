@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { BlogBasePageComponent } from './components/blog-base-page/blog-base-page.component';
+import { BlogOutPageComponent } from './components/blog-out-page/blog-out-page.component';
 
 
 @NgModule({
@@ -13,6 +14,6 @@ import { BlogBasePageComponent } from './components/blog-base-page/blog-base-pag
     RouterModule,
     FormsModule
   ],
-  declarations: [BlogBasePageComponent]
+  declarations: [BlogBasePageComponent, BlogOutPageComponent]
 })
 export class BlogModule { }

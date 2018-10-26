@@ -3,14 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 
 import {
   BlogBasePageComponent,
+  BlogOutPageComponent,
 } from './components';
 
-const routes: Routes = [
-  {
-    path: '',
-    component: BlogBasePageComponent,
-  },
-];
+const routes: Routes =[];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
