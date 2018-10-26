@@ -1,0 +1,11 @@
+<div class="in">
+  <form id="signin" name="signin" method="post" action="signin" (ngSubmit)="signinUser()">
+      <label for="email">Email Address
+          <input class="text" type="text" name="email1" [(ngModel)]="user.email" ngModel>
+      </label>
+      <label for="password">Password
+          <input type="password" name="password1" [(ngModel)]="user.password" ngModel>
+      </label>
+      <input class="btn" type="submit" value="Sign In">
+  </form>
+</div>
