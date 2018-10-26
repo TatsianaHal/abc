@@ -12,18 +12,9 @@ import { IUserObject } from '../../interface';
 })
 export class UserService {
 
-  // private loggedInStatus = false;
   private loggedInUser = null;
 
   constructor(private _http: HttpClient) { }
-
-  // setLoggedIn(value: boolean) {
-  //   this.loggedInStatus = value;
-  // }
-
-  // get isLoggedIn() {
-  //   return this.loggedInStatus;
-  // }
 
   public isLoggedIn(): Observable<any> {
     return this._http.get('/api/dashboard')
