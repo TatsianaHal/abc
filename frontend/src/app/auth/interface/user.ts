@@ -8,6 +8,6 @@ export interface IUser {
   password?: string;
   last_login: number;
   // status: enum;
-  // createdAt
-  // updatedAt
+  createdAt: number;
+  updatedAt: number;
 }
