@@ -8,17 +8,7 @@ import { BlogService } from '../../services';
 })
 export class BlogBasePageComponent implements OnInit {
 
-  constructor(private appServiceComponents: BlogService) {}
-  user = {
-    email: '',
-    password: ''
-  }
-
-  userSubmit() {
-    this.appServiceComponents.getAllUsers()
-                             .subscribe(res => {console.log(res)});
-  }
-
+  constructor(private appServiceComponents: BlogService) { }
   ngOnInit() {
   }
 
