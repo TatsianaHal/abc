@@ -9,6 +9,7 @@ article {
 
 a {
   border-bottom: 3px solid #e6e6ff;
+  text-decoration: none;
   cursor: pointer;
 }
 
