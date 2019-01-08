@@ -8,7 +8,16 @@ import { BlogService } from '../../services';
 })
 export class BlogBasePageComponent implements OnInit {
 
-  constructor(private appServiceComponents: BlogService) { }
+  private post = null;
+
+  selectedPost() {}
+
+  constructor(private blogService: BlogService) { }
+
+  // getPosts():void {
+  //   this.blogService.getPosts().then(post => this.post = post)
+  // }
+
   ngOnInit() {
   }
 

@@ -1,10 +1,13 @@
 <article>
+<!-- <article *ngIf="post"> -->
   <header>
     <h2>
-      <a>Post Prev</a>
+      <a routerLink="/post">Post Prev</a>
+      <!-- <a routerLink="/post">{{post.title}}</a> -->
     </h2>
   </header>
   <section>
     <p>The hard truth of the matter is that 98% of blogs have pretty ordinary and recycled information.</p>
+    <!-- <p>{{post.prev}}</p> -->
   </section>
 </article>
